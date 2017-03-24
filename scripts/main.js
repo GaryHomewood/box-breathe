@@ -8,9 +8,19 @@ var animating = true;
 var frameCounter = 0;
 var drawR;
 var drawStep = 80;
+var canvas;
+
+document.getElementById('btn-about').addEventListener('click', function() {
+    document.getElementById('about').className = 'about show';
+});
+
+document.getElementById('btn-close').addEventListener('click', function() {
+    document.getElementById('about').className = 'about hide';
+});
 
 function setup() {
-    createCanvas(maxRadius * 2, maxRadius * 2);
+    canvas = createCanvas(maxRadius * 2, maxRadius * 2);
+    canvas.mouseClicked(toggleAnimating);
     stroke('#fff');
     background('#119532');
     fill('#119532');
@@ -47,9 +57,7 @@ function draw() {
         ellipse(maxRadius, maxRadius, container, container);
     }
 
-
     stroke('rgba(255, 255, 255, 0.3)');
-    //fill('#44ea6e');
     fill('#14b33c');
     drawCircle(10);
 
@@ -68,7 +76,7 @@ function draw() {
     }
 }
 
-function mouseClicked() {
+function toggleAnimating() {
     animating = !animating;
 }
 
